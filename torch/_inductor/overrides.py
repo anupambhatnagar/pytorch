@@ -430,6 +430,7 @@ def fuse_fx(gm: torch.fx.GraphModule, example_inputs):
     is_cpu = all(
         example_input.device == torch.device("cpu") for example_input in example_inputs
     )
+    print(f"is_cpu: {is_cpu}")
 
     if config.permute_fusion and not is_cpu:
         # For linear permute fusion, we need to check input info to identify

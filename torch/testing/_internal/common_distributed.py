@@ -353,11 +353,15 @@ if TEST_WITH_TSAN:
     TIMEOUT_DEFAULT = 500
 else:
     TIMEOUT_DEFAULT = int(os.getenv('DISTRIBUTED_TESTS_DEFAULT_TIMEOUT', '300'))
-TIMEOUT_OVERRIDE = {"test_ddp_uneven_inputs": 400, "test_file_system_checkpoint": 600}
+TIMEOUT_OVERRIDE = {
+    "test_ddp_uneven_inputs": 400,
+    "test_file_system_checkpoint": 1200
+}
 
 # https://github.com/pytorch/pytorch/issues/75665
 if TEST_WITH_ROCM:
     TIMEOUT_OVERRIDE["test_join_kwargs"] = 200
+
 
 def create_device(interface=None):
     if sys.platform == "win32" or interface is None:
